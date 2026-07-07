@@ -6,7 +6,7 @@
 /*   By: thamoliv <thamoliv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/30 18:38:19 by thamoliv          #+#    #+#             */
-/*   Updated: 2026/06/30 18:49:33 by thamoliv         ###   ########.fr       */
+/*   Updated: 2026/07/07 19:03:31 by thamoliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,3 +37,15 @@ long	ft_atol(const char *str)
 	}
 	return (res * sign);
 }
+
+void	print_operation(const char *name)
+{
+	int	length;
+ 
+	length = 0;
+	while (name[length])
+		length++;
+	write(1, name, length);
+	write(1, "\n", 1);
+}
+ 
