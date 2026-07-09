@@ -1,43 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   operations_push.c                                  :+:      :+:    :+:   */
+/*   assign_indexes.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thamoliv <thamoliv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/07 19:03:12 by thamoliv          #+#    #+#             */
-/*   Updated: 2026/07/08 15:37:48 by thamoliv         ###   ########.fr       */
+/*   Created: 2026/07/09 15:01:52 by thamoliv          #+#    #+#             */
+/*   Updated: 2026/07/09 15:02:40 by thamoliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	op_pa(t_data *data, int print)
+static int	count_smaller_values(t_stack *stack, int value)
 {
-	t_stack	*node;
+	int	count;
 
-	if (data->size_b > 0)
+	count = 0;
+	while (stack)
 	{
-		node = pop_top(&data->stack_b);
-		push_top(&data->stack_a, node);
-		data->size_b--;
-		data->size_a++;
+		if (stack->value < value)
+			count++;
+		stack = stack->next;
 	}
-	if (print)
-		print_operation("pa");
+	return (count);
 }
 
-void	op_pb(t_data *data, int print)
+void	assign_indexes(t_data *data)
 {
-	t_stack	*node;
+	t_stack	*current;
 
-	if (data->size_a > 0)
+	current = data->stack_a;
+	while (current)
 	{
-		node = pop_top(&data->stack_a);
-		push_top(&data->stack_b, node);
-		data->size_a--;
-		data->size_b++;
+		current->index = count_smaller_values(data->stack_a,
+				current->value);
+		current = current->next;
 	}
-	if (print)
-		print_operation("pb");
 }

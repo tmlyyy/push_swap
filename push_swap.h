@@ -6,7 +6,7 @@
 /*   By: thamoliv <thamoliv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/30 16:05:01 by thamoliv          #+#    #+#             */
-/*   Updated: 2026/07/07 19:16:48 by thamoliv         ###   ########.fr       */
+/*   Updated: 2026/07/09 18:14:50 by thamoliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,34 @@ typedef struct s_data
 	t_stack	*stack_b;
 	int		size_a;
 	int		size_b;
+	int		total_size;
 }	t_data;
+
+typedef struct s_bench
+{
+	int		enabled;
+	int		total;
+	int		sa;
+	int		sb;
+	int		ss;
+	int		ra;
+	int		rb;
+	int		rr;
+	int		rra;
+	int		rrb;
+	int		rrr;
+	int		pa;
+	int		pb;
+	double	disorder;
+	char	*strategy;
+}	t_bench;
+
+typedef struct s_config
+{
+	int		bench_enabled;
+	int		count_only;
+	char	*strategy;
+}	t_config;
 
 /* error_handling.c
 ** Tudo relacionado a "algo deu errado, aborta o programa". */
@@ -125,5 +152,17 @@ void	op_rrr(t_data *data, int print);
 ** de estar ordenada. Deve ser medida ANTES de qualquer
 ** operacao ser executada na pilha. */
 double	compute_disorder(t_stack *stack);
+static	void	count_mistakes(t_stack *stack, int *mistakes, int *total_pairs);
+
+static	int	count_smaller_values(t_stack *stack, int value);
+void	assign_indexes(t_data *data);
+
+int	is_sorted(t_stack *stack);
+int	find_position(t_stack *stack, int index);
+int	stack_min_index(t_stack *stack);
+int	stack_max_index(t_stack *stack);
+
+
+
 
 #endif

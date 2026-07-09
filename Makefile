@@ -34,17 +34,4 @@ fclean: clean
 
 re: fclean all
 
-TEST_SRC	= dev_test_operations.c \
-			  error_handling.c \
-			  string_validation.c \
-			  utils.c \
-			  argument_parser.c \
-			  stack_creation.c \
-			  node_helpers.c \
-			  operations_swap.c \
-			  operations_push.c \
-			  operations_rotate.c \
-			  operations_reverse_rotate.c \
-			  disorder.c
-
 .PHONY: all clean fclean re test_ops

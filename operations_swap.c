@@ -6,7 +6,7 @@
 /*   By: thamoliv <thamoliv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/07 19:02:17 by thamoliv          #+#    #+#             */
-/*   Updated: 2026/07/07 19:02:28 by thamoliv         ###   ########.fr       */
+/*   Updated: 2026/07/09 18:19:42 by thamoliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,17 @@
 
 static void	swap_top_two(t_stack **stack)
 {
-	int	temp;
+	int	temp_value;
+	int	temp_index;
 
 	if (!*stack || !(*stack)->next)
 		return ;
-	temp = (*stack)->value;
+	temp_value = (*stack)->value;
+	temp_index = (*stack)->index;
 	(*stack)->value = (*stack)->next->value;
-	(*stack)->next->value = temp;
+	(*stack)->index = (*stack)->next->index;
+	(*stack)->next->value = temp_value;
+	(*stack)->next->index = temp_index;
 }
 
 void	op_sa(t_data *data, int print)
