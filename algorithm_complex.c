@@ -6,7 +6,7 @@
 /*   By: thamoliv <thamoliv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/09 17:45:12 by thamoliv          #+#    #+#             */
-/*   Updated: 2026/07/10 17:22:33 by thamoliv         ###   ########.fr       */
+/*   Updated: 2026/07/10 19:55:24 by thamoliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ static int	partition_b(t_data *data, int size, int print)
 void	quicksort_a(t_data *data, int size, int print)
 {
 	int	pushed;
-	int	rotated;
 
 	if (size <= 2)
 	{
@@ -67,16 +66,13 @@ void	quicksort_a(t_data *data, int size, int print)
 			op_sa(data, print);
 		return ;
 	}
-	if (size == 3 && data->size_a == 3)
+	if (size == 3)
 	{
 		sort_three_a(data, print);
 		return ;
 	}
 	pushed = partition_a(data, size, print);
-	rotated = size - pushed;
-	if (data->size_a != rotated)
-		while (rotated-- > 0)
-			op_rra(data, print);
+
 	quicksort_a(data, size - pushed, print);
 	quicksort_b(data, pushed, print);
 }
@@ -84,7 +80,6 @@ void	quicksort_a(t_data *data, int size, int print)
 void	quicksort_b(t_data *data, int size, int print)
 {
 	int	pushed;
-	int	rotated;
 
 	if (size <= 2)
 	{
@@ -94,7 +89,7 @@ void	quicksort_b(t_data *data, int size, int print)
 			op_pa(data, print);
 		return ;
 	}
-	if (size == 3 && data->size_b == 3)
+	if (size == 3)
 	{
 		sort_three_b(data, print);
 		while (size-- > 0)
@@ -102,11 +97,8 @@ void	quicksort_b(t_data *data, int size, int print)
 		return ;
 	}
 	pushed = partition_b(data, size, print);
-	rotated = size - pushed;
+
 	quicksort_a(data, pushed, print);
-	if (data->size_b != rotated)
-		while (rotated-- > 0)
-			op_rrb(data, print);
 	quicksort_b(data, size - pushed, print);
 }
 

@@ -6,7 +6,7 @@
 /*   By: thamoliv <thamoliv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/30 18:31:31 by thamoliv          #+#    #+#             */
-/*   Updated: 2026/07/10 17:39:27 by thamoliv         ###   ########.fr       */
+/*   Updated: 2026/07/10 19:30:58 by thamoliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,24 @@
 
 int	strategy_option(const char *str)
 {
-	if (strings_are_equal(str, "--simple"))
-		return (1);
-	if (strings_are_equal(str, "--medium"))
-		return (1);
-	if (strings_are_equal(str, "--complex"))
-		return (1);
-	if (strings_are_equal(str, "--adaptive"))
+	if (strings_are_equal(str, "--simple")
+		|| strings_are_equal(str, "--medium")
+		|| strings_are_equal(str, "--complex")
+		|| strings_are_equal(str, "--adaptive"))
 		return (1);
 	return (0);
 }
 
-int	has_duplicate_values(long *values, int total_values)
+int	has_duplicate_values(long *values, int total)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	while (i < total_values)
+	while (i < total)
 	{
 		j = i + 1;
-		while (j < total_values)
+		while (j < total)
 		{
 			if (values[i] == values[j])
 				return (1);
@@ -45,7 +42,7 @@ int	has_duplicate_values(long *values, int total_values)
 	return (0);
 }
 
-static void	fill_values_array(int argc, char **argv, int start, long *values)
+void	fill_values_array(int argc, char **argv, int start, long *values)
 {
 	int		i;
 	long	val;
@@ -53,7 +50,7 @@ static void	fill_values_array(int argc, char **argv, int start, long *values)
 	i = start;
 	while (i < argc)
 	{
-		if (!string_is_valid_integer(argv[i]))
+		if (!string_is_valid_integer(argv[i]) || ft_strlen(argv[i]) > 11)
 		{
 			free(values);
 			print_error_and_exit();
@@ -69,27 +66,38 @@ static void	fill_values_array(int argc, char **argv, int start, long *values)
 	}
 }
 
-void	read_and_validate_arguments(int argc, char **argv, t_data *data)
+static void	handle_split_input(t_data *data, char *str)
 {
-	long	*values;
-	int		start_idx;
-	int		total_vals;
+	char	**args;
+	long	*vals;
+	int		count;
 
-	start_idx = 1;
-	if (argc > 1 && strategy_option(argv[1]))
-		start_idx = 2;
-	total_vals = argc - start_idx;
-	if (total_vals <= 0)
-		exit(0);
-	values = malloc(sizeof(long) * total_vals);
-	if (!values)
+	args = ft_split(str, ' ');
+	count = count_split_args(args);
+	vals = malloc(sizeof(long) * count);
+	if (!vals)
 		print_error_and_exit();
-	fill_values_array(argc, argv, start_idx, values);
-	if (has_duplicate_values(values, total_vals))
+	fill_split_values(args, vals, count);
+	if (has_duplicate_values(vals, count))
 	{
-		free(values);
+		free(vals);
 		print_error_and_exit();
 	}
-	create_stack_from_values(data, values, total_vals);
-	free(values);
+	create_stack_from_values(data, vals, count);
+	free(vals);
+}
+
+void	read_and_validate_arguments(int argc, char **argv, t_data *data)
+{
+	int	start;
+
+	start = 1;
+	if (argc > 1 && strategy_option(argv[1]))
+		start = 2;
+	if (argc == start + 1)
+		handle_split_input(data, argv[start]);
+	else if (argc > start)
+		handle_multiple_args(argc, argv, start, data);
+	else
+		exit(0);
 }

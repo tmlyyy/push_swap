@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gproenca <gproenca@student.42.fr>          +#+  +:+       +#+        */
+/*   By: thamoliv <thamoliv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/30 18:44:48 by thamoliv          #+#    #+#             */
-/*   Updated: 2026/07/10 17:48:46 by gproenca         ###   ########.fr       */
+/*   Updated: 2026/07/10 19:32:48 by thamoliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 static void	sort_stack(t_data *data)
 {
 	assign_indexes(data);
-
 	if (is_sorted(data->stack_a))
 		return ;
 	if (data->size_a == 2)

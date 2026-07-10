@@ -6,7 +6,7 @@
 /*   By: thamoliv <thamoliv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/09 17:44:15 by thamoliv          #+#    #+#             */
-/*   Updated: 2026/07/09 18:36:23 by thamoliv         ###   ########.fr       */
+/*   Updated: 2026/07/10 20:27:42 by thamoliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,12 @@ static void	move_chunk_to_b(t_data *data, int limit, int size, int print)
 	int	scanned;
 
 	scanned = data->size_a;
-	while (scanned-- > 0)
+	while (scanned-- > 0 && data->size_a > 0)
 	{
 		if (data->stack_a->index <= limit)
 		{
 			op_pb(data, print);
-			if (data->stack_b->index < (limit - (size / 2)))
+			if (data->size_b > 1 && data->stack_b->index < (limit - (size / 2)))
 				op_rb(data, print);
 		}
 		else
@@ -57,7 +57,7 @@ static void	push_chunks(t_data *data, int chunk_s, int print)
 	}
 }
 
-static void	move_biggest_to_top(t_data *data, int print)
+static void	move_biggest_to_top(t_data *data, int print)--
 {
 	int	pos;
 	int	max_idx;

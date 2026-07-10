@@ -22,7 +22,9 @@ SRC			= main.c \
 			  algorithm_complex.c \
 			  algorithm_complex_utils.c \
 			  bench.c \
-			  bench_utils.c
+			  bench_utils.c \
+			  parsing_utils.c\
+			  split_validations.c
 
 OBJ			= $(SRC:.c=.o)
 

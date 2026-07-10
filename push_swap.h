@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gproenca <gproenca@student.42.fr>          +#+  +:+       +#+        */
+/*   By: thamoliv <thamoliv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/10 17:22:07 by thamoliv          #+#    #+#             */
-/*   Updated: 2026/07/10 17:48:46 by gproenca         ###   ########.fr       */
+/*   Updated: 2026/07/10 19:55:24 by thamoliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,5 +111,13 @@ void	putstr_fd(char *str, int fd);
 void	putnbr_fd(int n, int fd);
 void	print_strategy(t_bench *bench);
 void	print_disorder(double disorder);
+char	**ft_split(char const *s, char c);
+size_t	ft_strlen(const char *s);
+char	*ft_strdup(const char *s1);
+int		count_split_args(char **args);
+void	fill_split_values(char **args, long *vals, int count);
+void	fill_values_array(int argc, char **argv, int start, long *values);
+void	handle_multiple_args(int argc, char **argv, int start,
+			t_data *data);
 
 #endif
