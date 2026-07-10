@@ -6,7 +6,7 @@
 /*   By: thamoliv <thamoliv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/30 18:31:31 by thamoliv          #+#    #+#             */
-/*   Updated: 2026/06/30 18:37:40 by thamoliv         ###   ########.fr       */
+/*   Updated: 2026/07/10 17:39:27 by thamoliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,16 +47,24 @@ int	has_duplicate_values(long *values, int total_values)
 
 static void	fill_values_array(int argc, char **argv, int start, long *values)
 {
-	int	i;
+	int		i;
+	long	val;
 
 	i = start;
 	while (i < argc)
 	{
 		if (!string_is_valid_integer(argv[i]))
+		{
+			free(values);
 			print_error_and_exit();
-		values[i - start] = ft_atol(argv[i]);
-		if (values[i - start] > INT_MAX || values[i - start] < INT_MIN)
+		}
+		val = ft_atol(argv[i]);
+		if (val > INT_MAX || val < INT_MIN)
+		{
+			free(values);
 			print_error_and_exit();
+		}
+		values[i - start] = val;
 		i++;
 	}
 }
@@ -64,20 +72,24 @@ static void	fill_values_array(int argc, char **argv, int start, long *values)
 void	read_and_validate_arguments(int argc, char **argv, t_data *data)
 {
 	long	*values;
-	int		start;
- 
-	start = 1;
+	int		start_idx;
+	int		total_vals;
+
+	start_idx = 1;
 	if (argc > 1 && strategy_option(argv[1]))
-		start = 2;
-	if (argc - start <= 0)
-		return ;
-	values = malloc(sizeof(long) * (argc - start));
+		start_idx = 2;
+	total_vals = argc - start_idx;
+	if (total_vals <= 0)
+		exit(0);
+	values = malloc(sizeof(long) * total_vals);
 	if (!values)
 		print_error_and_exit();
-	fill_values_array(argc, argv, start, values);
-	if (has_duplicate_values(values, argc - start))
+	fill_values_array(argc, argv, start_idx, values);
+	if (has_duplicate_values(values, total_vals))
+	{
+		free(values);
 		print_error_and_exit();
-	create_stack_from_values(data, values, argc - start);
+	}
+	create_stack_from_values(data, values, total_vals);
 	free(values);
 }
- 

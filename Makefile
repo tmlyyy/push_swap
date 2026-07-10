@@ -14,7 +14,15 @@ SRC			= main.c \
 			  operations_push.c \
 			  operations_rotate.c \
 			  operations_reverse_rotate.c \
-			  disorder.c
+			  disorder.c \
+			  assign_indexes.c \
+			  algorithm_utils.c \
+			  algorithm_simple.c \
+			  algorithm_medium.c \
+			  algorithm_complex.c \
+			  algorithm_complex_utils.c \
+			  bench.c \
+			  bench_utils.c
 
 OBJ			= $(SRC:.c=.o)
 
@@ -34,4 +42,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re test_ops
+.PHONY: all clean fclean re

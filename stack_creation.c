@@ -6,7 +6,7 @@
 /*   By: thamoliv <thamoliv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/30 17:29:54 by thamoliv          #+#    #+#             */
-/*   Updated: 2026/06/30 18:51:30 by thamoliv         ###   ########.fr       */
+/*   Updated: 2026/07/10 17:19:51 by thamoliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ t_stack	*create_new_node(int value)
 	node->next = NULL;
 	return (node);
 }
-
 
 void	add_node_to_end_of_stack(t_stack **stack, t_stack *new_node)
 {
@@ -58,7 +57,7 @@ void	create_stack_from_values(t_data *data, long *values, int total_values)
 {
 	int		i;
 	t_stack	*new_node;
- 
+
 	i = 0;
 	while (i < total_values)
 	{
@@ -70,4 +69,17 @@ void	create_stack_from_values(t_data *data, long *values, int total_values)
 	data->stack_b = NULL;
 	data->size_b = 0;
 }
- 
+
+void	free_stack(t_stack **stack)
+{
+	t_stack	*tmp;
+
+	if (!stack || !*stack)
+		return ;
+	while (*stack)
+	{
+		tmp = (*stack)->next;
+		free(*stack);
+		*stack = tmp;
+	}
+}

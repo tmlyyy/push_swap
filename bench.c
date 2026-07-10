@@ -6,43 +6,11 @@
 /*   By: thamoliv <thamoliv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/09 16:15:26 by thamoliv          #+#    #+#             */
-/*   Updated: 2026/07/09 16:15:33 by thamoliv         ###   ########.fr       */
+/*   Updated: 2026/07/10 16:50:28 by thamoliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-static int	get_op_nm(char *op)
-{
-	if (op[0] == 's' && op[1] == 'a')
-		return (1);
-	if (op[0] == 's' && op[1] == 'b')
-		return (2);
-	if (op[0] == 's' && op[1] == 's')
-		return (3);
-	if (op[0] == 'r' && op[1] == 'a' && op[2] == '\0')
-		return (4);
-	if (op[0] == 'r' && op[1] == 'b' && op[2] == '\0')
-		return (5);
-	if (op[0] == 'r' && op[1] == 'r' && op[2] == '\0')
-		return (6);
-	if (op[0] == 'r' && op[1] == 'r' && op[2] == 'a')
-		return (7);
-	if (op[0] == 'r' && op[1] == 'r' && op[2] == 'b')
-		return (8);
-	if (op[0] == 'r' && op[1] == 'r' && op[2] == 'r')
-		return (9);
-	if (op[0] == 'p' && op[1] == 'a')
-		return (10);
-	if (op[0] == 'p' && op[1] == 'b')
-		return (11);
-}
-
-static void	bench_print_count(char *label, int count)
-{
-	putstr_fd(label, 2);
-	putnbr_fd(count, 2);
-}
 
 void	bench_init(t_bench *bench, t_config *config, double disorder)
 {
@@ -62,6 +30,33 @@ void	bench_init(t_bench *bench, t_config *config, double disorder)
 	bench->count_only = config->count_only;
 	bench->disorder = disorder;
 	bench->strategy = config->strategy;
+}
+
+static int	get_op_nm(char *op)
+{
+	if (strings_are_equal(op, "sa"))
+		return (1);
+	if (strings_are_equal(op, "sb"))
+		return (2);
+	if (strings_are_equal(op, "ss"))
+		return (3);
+	if (strings_are_equal(op, "ra"))
+		return (4);
+	if (strings_are_equal(op, "rb"))
+		return (5);
+	if (strings_are_equal(op, "rr"))
+		return (6);
+	if (strings_are_equal(op, "rra"))
+		return (7);
+	if (strings_are_equal(op, "rrb"))
+		return (8);
+	if (strings_are_equal(op, "rrr"))
+		return (9);
+	if (strings_are_equal(op, "pa"))
+		return (10);
+	if (strings_are_equal(op, "pb"))
+		return (11);
+	return (0);
 }
 
 void	bench_count(t_bench *bench, char *op)
@@ -85,15 +80,37 @@ void	bench_count(t_bench *bench, char *op)
 	bench->pb += (nm == 11);
 }
 
-void	bench_print(t_bench *bench)
+static void	print_op_count(char *label, int count)
 {
-	if (!bench || !bench->enabled)
-		return ;
-	if (bench->count_only)
+	if (count > 0)
 	{
-		putnbr_fd(bench->total, 1);
+		putstr_fd(label, 2);
+		putstr_fd(": ", 2);
+		putnbr_fd(count, 2);
+		putstr_fd(" | ", 2);
+	}
+}
+
+void	bench_print(t_bench *b)
+{
+	if (!b || !b->enabled)
+		return ;
+	if (b->count_only)
+	{
+		putnbr_fd(b->total, 1);
 		putstr_fd("\n", 1);
 		return ;
 	}
-	
+	print_strategy(b);
+	print_disorder(b->disorder);
+	putstr_fd("Total: ", 2);
+	putnbr_fd(b->total, 2);
+	putstr_fd("\n", 2);
+	print_op_count("sa", b->sa);
+	print_op_count("sb", b->sb);
+	print_op_count("ra", b->ra);
+	print_op_count("rb", b->rb);
+	print_op_count("pa", b->pa);
+	print_op_count("pb", b->pb);
+	putstr_fd("\n", 2);
 }
