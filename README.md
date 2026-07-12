@@ -2,12 +2,6 @@
 
 # push_swap
 
-> A primeira linha acima é mantida em inglês porque o subject exige,
-> literalmente, essa frase (*"This project has been created as part of
-> the 42 curriculum by..."*) como formato obrigatório de abertura do
-> README. O restante do documento está em português, o idioma do
-> nosso campus.
-
 Ordenar uma pilha parece trivial — ordená-la usando apenas duas pilhas
 e um punhado de operações limitadas, com o menor número possível de
 movimentos, é outra história. O `push_swap` é a nossa resposta a esse
