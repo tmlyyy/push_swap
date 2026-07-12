@@ -1,13 +1,13 @@
 /* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   operations_push.c                                  :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: thamoliv <thamoliv@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/07 19:03:12 by thamoliv          #+#    #+#             */
-/*   Updated: 2026/07/08 15:37:48 by thamoliv         ###   ########.fr       */
-/*                                                                            */
+/* */
+/* :::      ::::::::   */
+/* operations_push.c                                  :+:      :+:    :+:   */
+/* +:+ +:+         +:+     */
+/* By: thamoliv <thamoliv@student.42.fr>          +#+  +:+       +#+        */
+/* +#+#+#+#+#+   +#+           */
+/* Created: 2026/07/07 19:03:12 by thamoliv          #+#    #+#             */
+/* Updated: 2026/07/11 23:00:00 by thamoliv         ###   ########.fr       */
+/* */
 /* ************************************************************************** */
 
 #include "push_swap.h"
@@ -25,6 +25,7 @@ void	op_pa(t_data *data, int print)
 	}
 	if (print)
 		print_operation("pa");
+	bench_count(data->bench, "pa");
 }
 
 void	op_pb(t_data *data, int print)
@@ -40,4 +41,5 @@ void	op_pb(t_data *data, int print)
 	}
 	if (print)
 		print_operation("pb");
+	bench_count(data->bench, "pb");
 }

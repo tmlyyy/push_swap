@@ -57,7 +57,7 @@ static void	push_chunks(t_data *data, int chunk_s, int print)
 	}
 }
 
-static void	move_biggest_to_top(t_data *data, int print)--
+static void	move_biggest_to_top(t_data *data, int print)
 {
 	int	pos;
 	int	max_idx;

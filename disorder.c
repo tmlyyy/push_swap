@@ -1,13 +1,13 @@
 /* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   disorder.c                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: thamoliv <thamoliv@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/07 19:08:34 by thamoliv          #+#    #+#             */
-/*   Updated: 2026/07/07 19:08:41 by thamoliv         ###   ########.fr       */
-/*                                                                            */
+/* */
+/* :::      ::::::::   */
+/* disorder.c                                         :+:      :+:    :+:   */
+/* +:+ +:+         +:+     */
+/* By: thamoliv <thamoliv@student.42.fr>          +#+  +:+       +#+        */
+/* +#+#+#+#+#+   +#+           */
+/* Created: 2026/07/07 19:08:34 by thamoliv          #+#    #+#             */
+/* Updated: 2026/07/07 19:08:41 by thamoliv         ###   ########.fr       */
+/* */
 /* ************************************************************************** */
 
 #include "push_swap.h"
@@ -55,7 +55,7 @@ static void	count_mistakes(t_stack *stack, int *mistakes, int *total_pairs)
 ** pilha inicial, ANTES de qualquer sa/pa/ra/etc ser executada
 ** — o sujeito exige medir a desordem do estado ORIGINAL.
 */
-double	compute_disorder(t_stack *stack)
+double	calculate_disorder(t_stack *stack)
 {
 	int	mistakes;
 	int	total_pairs;

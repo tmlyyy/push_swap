@@ -89,15 +89,29 @@ static void	handle_split_input(t_data *data, char *str)
 
 void	read_and_validate_arguments(int argc, char **argv, t_data *data)
 {
-	int	start;
+	int		start;
+	long	*vals;
+	int		total;
 
 	start = 1;
-	if (argc > 1 && strategy_option(argv[1]))
-		start = 2;
+	while (start < argc && (strings_are_equal(argv[start], "--bench")
+			|| strategy_option(argv[start])))
+		start++;
 	if (argc == start + 1)
 		handle_split_input(data, argv[start]);
 	else if (argc > start)
-		handle_multiple_args(argc, argv, start, data);
-	else
-		exit(0);
+	{
+		total = argc - start;
+		vals = malloc(sizeof(long) * total);
+		if (!vals)
+			print_error_and_exit();
+		fill_values_array(argc, argv, start, vals);
+		if (has_duplicate_values(vals, total))
+		{
+			free(vals);
+			print_error_and_exit();
+		}
+		create_stack_from_values(data, vals, total);
+		free(vals);
+	}
 }

@@ -108,9 +108,14 @@ void	bench_print(t_bench *b)
 	putstr_fd("\n", 2);
 	print_op_count("sa", b->sa);
 	print_op_count("sb", b->sb);
-	print_op_count("ra", b->ra);
-	print_op_count("rb", b->rb);
+	print_op_count("ss", b->ss);
 	print_op_count("pa", b->pa);
 	print_op_count("pb", b->pb);
+	print_op_count("ra", b->ra);
+	print_op_count("rb", b->rb);
+	print_op_count("rr", b->rr);
+	print_op_count("rra", b->rra);
+	print_op_count("rrb", b->rrb);
+	print_op_count("rrr", b->rrr);
 	putstr_fd("\n", 2);
 }

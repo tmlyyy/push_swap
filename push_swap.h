@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: thamoliv <thamoliv@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/10 17:22:07 by thamoliv          #+#    #+#             */
-/*   Updated: 2026/07/10 19:55:24 by thamoliv         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
@@ -24,15 +12,6 @@ typedef struct s_stack
 	int				index;
 	struct s_stack	*next;
 }	t_stack;
-
-typedef struct s_data
-{
-	t_stack	*stack_a;
-	t_stack	*stack_b;
-	int		size_a;
-	int		size_b;
-	int		total_size;
-}	t_data;
 
 typedef struct s_config
 {
@@ -60,6 +39,16 @@ typedef struct s_bench
 	double	disorder;
 	char	*strategy;
 }	t_bench;
+
+typedef struct s_data
+{
+	t_stack		*stack_a;
+	t_stack		*stack_b;
+	int			size_a;
+	int			size_b;
+	int			total_size;
+	t_bench		*bench;
+}	t_data;
 
 void	print_error_and_exit(void);
 int		strings_are_equal(const char *str1, const char *str2);

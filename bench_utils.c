@@ -39,11 +39,13 @@ void	print_strategy(t_bench *bench)
 	if (!bench->strategy)
 		return ;
 	if (strings_are_equal(bench->strategy, "--simple"))
-		putstr_fd("Strategy: Simple\n", 2);
+		putstr_fd("Strategy: Simple O(n^2)\n", 2);
 	else if (strings_are_equal(bench->strategy, "--medium"))
-		putstr_fd("Strategy: Medium\n", 2);
+		putstr_fd("Strategy: Medium O(n*sqrt(n))\n", 2);
 	else if (strings_are_equal(bench->strategy, "--complex"))
-		putstr_fd("Strategy: Complex\n", 2);
+		putstr_fd("Strategy: Complex O(n*log(n))\n", 2);
+	else
+		putstr_fd("Strategy: Adaptive\n", 2);
 }
 
 void	print_disorder(double disorder)
