@@ -6,7 +6,7 @@
 /*   By: thamoliv <thamoliv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/09 17:45:12 by thamoliv          #+#    #+#             */
-/*   Updated: 2026/07/10 19:55:24 by thamoliv         ###   ########.fr       */
+/*   Updated: 2026/07/13 12:36:10 by thamoliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ void	quicksort_a(t_data *data, int size, int print)
 		return ;
 	}
 	pushed = partition_a(data, size, print);
-
 	quicksort_a(data, size - pushed, print);
 	quicksort_b(data, pushed, print);
 }
@@ -97,7 +96,6 @@ void	quicksort_b(t_data *data, int size, int print)
 		return ;
 	}
 	pushed = partition_b(data, size, print);
-
 	quicksort_a(data, pushed, print);
 	quicksort_b(data, size - pushed, print);
 }
