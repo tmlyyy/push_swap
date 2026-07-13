@@ -139,10 +139,10 @@ A desordem é um coeficiente entre `0.0` e `1.0` que mede o quão longe a pilha 
 
 O algoritmo principal foi otimizado para atingir os mais altos graus de avaliação de performance estipulados pela 42:
 
-| Tamanho | Aceitável (Aprovado) | Excelente (Nota Máxima) | Nossa Média |
+| Tamanho | Aceitável (Aprovado) | Excelente (Nota Máxima) |
 | --- | --- | --- | --- |
-| 100 números | < 2000 operações | < 700 operações | **~600** operações |
-| 500 números | < 12000 operações | < 5500 operações | **~4300** operações |
+| 100 números | < 2000 operações | < 700 operações |
+| 500 números | < 12000 operações | < 5500 operações |
 
 ---
 
