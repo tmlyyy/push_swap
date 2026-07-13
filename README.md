@@ -1,4 +1,4 @@
-*Este projeto foi criado como parte do currículo da 42 por thamoliv e gproenca.*
+*This project has been created as part of the 42 curriculum by thamoliv, gproenca.*
 
 # push_swap
 
