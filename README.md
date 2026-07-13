@@ -132,14 +132,8 @@ pilha inicial:
 | `0.20` a `0.50` | O(n√n) — desordem média |
 | `>= 0.50` | O(n log n) — alta desordem |
 
-A justificativa desses limiares é que, quanto mais próxima do estado
-ordenado a pilha já está, menos vantagem um algoritmo assintoticamente
-melhor (porém com maior overhead constante, como o particionamento por
-mediana) traz na prática — um algoritmo simples de seleção já resolve
-o caso quase-ordenado com poucas operações. À medida que a desordem
-cresce, o custo quadrático do algoritmo simples deixa de compensar e
-estratégias de particionamento (chunk / quicksort) passam a gerar menos
-operações.
+A justificativa desses limiares é que, quanto mais próxima do estado ordenado a pilha já está, menos vantagem um algoritmo assintoticamente melhor (porém com maior overhead constante, como o particionamento por mediana) traz na prática — um algoritmo simples de seleção já resolve o caso quase-ordenado com poucas operações. À medida que a desordem cresce, o custo quadrático do algoritmo simples deixa de compensar e estratégias de particionamento (chunk / quicksort) passam a gerar menos operações.
+
 ---
 
 ## Métrica de Desordem
@@ -155,10 +149,10 @@ A desordem é um coeficiente entre `0.0` e `1.0` que mede o quão longe a pilha 
 
 O algoritmo principal foi otimizado para atingir os mais altos graus de avaliação de performance estipulados pela 42:
 
-| Tamanho | Aceitável (Aprovado) | Excelente (Nota Máxima) | Nossa Média |
+| Tamanho | Aceitável (Aprovado) | Excelente (Nota Máxima) |
 | --- | --- | --- | --- |
-| 100 números | < 2000 operações | < 700 operações | **~600** operações |
-| 500 números | < 12000 operações | < 5500 operações | **~4300** operações |
+| 100 números | < 2000 operações | < 700 operações |
+| 500 números | < 12000 operações | < 5500 operações |
 
 ---
 
