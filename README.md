@@ -207,10 +207,6 @@ projeto, para:
 - Entender melhor os algoritmos de ordenação exigidos pelo subject
   (selection sort, chunk/bucket sort, quicksort adaptado a pilhas) e
   suas classes de complexidade;
-- Discutir e depurar o comportamento do modo `--adaptive` em pilhas
-  grandes (ex.: o problema de `KO` do `algorithm_quicksort` em
-  entradas de 500 números, que levou à decisão documentada acima de
-  usar `algorithm_chunk` nesse caminho);
 - Redigir e estruturar este `README.md` — organização das seções
   exigidas pelo subject, descrição dos algoritmos a partir da leitura
   do código-fonte já implementado, e formatação das tabelas.
