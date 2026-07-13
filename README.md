@@ -145,17 +145,6 @@ A desordem é um coeficiente entre `0.0` e `1.0` que mede o quão longe a pilha 
 
 ---
 
-## Metas de Performance (Moulinette)
-
-O algoritmo principal foi otimizado para atingir os mais altos graus de avaliação de performance estipulados pela 42:
-
-| Tamanho | Aceitável (Aprovado) | Excelente (Nota Máxima) |
-| --- | --- | --- | --- |
-| 100 números | < 2000 operações | < 700 operações |
-| 500 números | < 12000 operações | < 5500 operações |
-
----
-
 ## Estrutura do Projeto
 
 | Arquivo(s) | Responsabilidade |
@@ -175,15 +164,13 @@ O algoritmo principal foi otimizado para atingir os mais altos graus de avaliaç
 ## Contribuições
 
 Este projeto foi desenvolvido em dupla, conforme exigido pelo subject.
-Com base no cabeçalho de autoria (`By:`) de cada arquivo-fonte:
 
 - **thamoliv** — parsing e validação de argumentos, criação/gerência
   das pilhas, operações Push_swap, as quatro estratégias de ordenação
-  (`simple`, `medium`, `complex`), cálculo de desordem, modo de
-  benchmark e `main.c`.
+  (`simple`, `medium`, `complex`), cálculo de desordem e `main.c`.
 - **gproenca** — funções auxiliares de algoritmo (`algorithm_utils.c`:
-  `is_sorted`, `find_position`, `stack_min_index`, `stack_max_index`)
-  e operações de rotação (`operations_rotate.c`).
+  `is_sorted`, `find_position`, `stack_min_index`, `stack_max_index`), modo de
+  benchmark e operações de rotação (`operations_rotate.c`).
 
 Ambos os integrantes compreendem a totalidade dos algoritmos
 implementados e são capazes de explicar e defender qualquer parte do
