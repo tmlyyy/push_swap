@@ -1,7 +1,6 @@
 # Checklist de Testes para a Defesa — push_swap
 
-> Baseado integralmente na grade de avaliação oficial
-> (`Projetos Intra push_swap Editar.pdf`). Rode cada bloco antes da
+> Baseado integralmente na grade de avaliação oficial. Rode cada bloco antes da
 > defesa e marque o `[ ]` como `[x]` quando passar. Sempre que uma
 > seção pedir "rode 2-3 vezes com entradas diferentes", troque os
 > valores de exemplo por outros gerados aleatoriamente.
