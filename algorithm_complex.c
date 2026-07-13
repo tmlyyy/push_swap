@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: thamoliv <thamoliv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/09 17:45:12 by thamoliv          #+#    #+#             */
-/*   Updated: 2026/07/13 13:11:38 by thamoliv         ###   ########.fr       */
+/*   Created: 2026/07/13 13:21:37 by thamoliv          #+#    #+#             */
+/*   Updated: 2026/07/13 13:21:41 by thamoliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,13 @@
 static int	partition_a(t_data *data, int size, int print)
 {
 	int	pushed;
-	int	rotated;
-	int	i;
 	int	pivot;
+	int	orig_size;
 
 	pushed = 0;
-	rotated = 0;
-	i = size;
+	orig_size = size;
 	pivot = get_median(data->stack_a, size);
-	while (i-- > 0)
+	while (size-- > 0)
 	{
 		if (data->stack_a->index < pivot)
 		{
@@ -31,13 +29,10 @@ static int	partition_a(t_data *data, int size, int print)
 			pushed++;
 		}
 		else
-		{
 			op_ra(data, print);
-			rotated++;
-		}
 	}
-	if (size != data->size_a + pushed)
-		while (rotated--)
+	if (orig_size - pushed != data->size_a)
+		while (orig_size-- > pushed)
 			op_rra(data, print);
 	return (pushed);
 }
@@ -45,15 +40,13 @@ static int	partition_a(t_data *data, int size, int print)
 static int	partition_b(t_data *data, int size, int print)
 {
 	int	pushed;
-	int	rotated;
-	int	i;
 	int	pivot;
+	int	orig_size;
 
 	pushed = 0;
-	rotated = 0;
-	i = size;
+	orig_size = size;
 	pivot = get_median(data->stack_b, size);
-	while (i-- > 0)
+	while (size-- > 0)
 	{
 		if (data->stack_b->index >= pivot)
 		{
@@ -61,13 +54,10 @@ static int	partition_b(t_data *data, int size, int print)
 			pushed++;
 		}
 		else
-		{
 			op_rb(data, print);
-			rotated++;
-		}
 	}
-	if (size != data->size_b + pushed)
-		while (rotated--)
+	if (orig_size - pushed != data->size_b)
+		while (orig_size-- > pushed)
 			op_rrb(data, print);
 	return (pushed);
 }
