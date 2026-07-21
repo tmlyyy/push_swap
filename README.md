@@ -202,4 +202,3 @@ understood by the pair (**thamoliv** and **gproenca**), who are able to
 explain and defend any part of it during evaluation; AI served
 only as a support and reference tool, never as the author of the
 final code.
-```
