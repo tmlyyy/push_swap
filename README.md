@@ -2,67 +2,67 @@
 
 # push_swap
 
-Ordenar uma pilha parece trivial — ordená-la usando apenas duas pilhas e um punhado de operações limitadas, com o menor número possível de movimentos, é outra história. O `push_swap` é a nossa resposta a esse desafio.
+Sorting a stack seems trivial — sorting it using only two stacks and a handful of limited operations, with the smallest possible number of moves, is another story entirely. `push_swap` is our answer to that challenge.
 
 ---
 
-## Descrição
+## Description
 
-`push_swap` recebe uma lista de inteiros (sem duplicados) como argumentos e imprime, na saída padrão, a menor sequência possível de instruções capaz de ordenar essa lista em ordem crescente, utilizando apenas duas pilhas (`a` e `b`) e um conjunto restrito de operações.
+`push_swap` takes a list of integers (no duplicates) as arguments and prints, to standard output, the smallest possible sequence of instructions capable of sorting that list in ascending order, using only two stacks (`a` and `b`) and a restricted set of operations.
 
-O programa começa com todos os números na pilha `a` e a pilha `b` vazia. O objetivo é mover e reordenar os valores usando `sa`, `sb`, `ss`, `pa`, `pb`, `ra`, `rb`, `rr`, `rra`, `rrb` e `rrr` até que `a` esteja totalmente ordenada, gastando o menor número de operações possível.
+The program starts with all numbers in stack `a` and stack `b` empty. The goal is to move and reorder the values using `sa`, `sb`, `ss`, `pa`, `pb`, `ra`, `rb`, `rr`, `rra`, `rrb`, and `rrr` until `a` is fully sorted, using the smallest possible number of operations.
 
-Além do `push_swap` em si, o projeto implementa **quatro estratégias de ordenação diferentes** (com complexidades distintas), uma **métrica de desordem** para caracterizar o estado inicial da pilha, e um **modo de benchmark** (`--bench`) que reporta estatísticas detalhadas de execução.
+In addition to `push_swap` itself, the project implements **four different sorting strategies** (with distinct complexities), a **disorder metric** to characterize the initial state of the stack, and a **benchmark mode** (`--bench`) that reports detailed execution statistics.
 
-### Operações disponíveis
+### Available operations
 
-| Operação | Efeito |
+| Operation | Effect |
 |----------|--------|
-| `sa` | Troca os dois primeiros elementos do topo de `a`. |
-| `sb` | Troca os dois primeiros elementos do topo de `b`. |
-| `ss` | Executa `sa` e `sb` simultaneamente. |
-| `pa` | Move o topo de `b` para o topo de `a`. |
-| `pb` | Move o topo de `a` para o topo de `b`. |
-| `ra` | Rotaciona `a` para cima (o primeiro elemento vira o último). |
-| `rb` | Rotaciona `b` para cima (o primeiro elemento vira o último). |
-| `rr` | Executa `ra` e `rb` simultaneamente. |
-| `rra` | Rotaciona `a` para baixo (o último elemento vira o primeiro). |
-| `rrb` | Rotaciona `b` para baixo (o último elemento vira o primeiro). |
-| `rrr` | Executa `rra` e `rrb` simultaneamente. |
+| `sa` | Swaps the first two elements at the top of `a`. |
+| `sb` | Swaps the first two elements at the top of `b`. |
+| `ss` | Executes `sa` and `sb` simultaneously. |
+| `pa` | Moves the top of `b` to the top of `a`. |
+| `pb` | Moves the top of `a` to the top of `b`. |
+| `ra` | Rotates `a` upward (the first element becomes the last). |
+| `rb` | Rotates `b` upward (the first element becomes the last). |
+| `rr` | Executes `ra` and `rb` simultaneously. |
+| `rra` | Rotates `a` downward (the last element becomes the first). |
+| `rrb` | Rotates `b` downward (the last element becomes the first). |
+| `rrr` | Executes `rra` and `rrb` simultaneously. |
 
 ---
 
-## Instruções
+## Instructions
 
-### Compilação
+### Compilation
 
 ```bash
 make
 
 ```
 
-Isso gera o binário `push_swap` a partir dos arquivos-fonte, com as flags `-Wall -Wextra -Werror`, seguindo as regras `NAME`, `all`, `clean`, `fclean` e `re` exigidas pelo subject.
+This generates the `push_swap` binary from the source files, with the `-Wall -Wextra -Werror` flags, following the `NAME`, `all`, `clean`, `fclean`, and `re` rules required by the subject.
 
 ```bash
-make clean   # remove os arquivos objeto
-make fclean  # remove objetos e o binário
-make re      # recompila do zero
+make clean   # removes object files
+make fclean  # removes object files and the binary
+make re      # rebuilds from scratch
 
 ```
 
-### Execução
+### Execution
 
 ```bash
-./push_swap [--simple|--medium|--complex|--adaptive] <lista de inteiros>
+./push_swap [--simple|--medium|--complex|--adaptive] <list of integers>
 
 ```
 
-* Os inteiros podem ser passados como argumentos separados (`./push_swap 2 1 3`) ou como uma única string com os números separados por espaço (`./push_swap "2 1 3"`).
-* O seletor de estratégia é opcional. Se omitido, `--adaptive` é usado por padrão.
-* Se nenhum argumento numérico for informado, o programa não imprime nada e devolve o prompt.
-* Em caso de erro (argumento não numérico, fora do limite de inteiros ou valores duplicados), o programa imprime `Error` na saída de erro (`stderr`).
+* Integers can be passed as separate arguments (`./push_swap 2 1 3`) or as a single string with the numbers separated by spaces (`./push_swap "2 1 3"`).
+* The strategy selector is optional. If omitted, `--adaptive` is used by default.
+* If no numeric argument is provided, the program prints nothing and returns the prompt.
+* In case of an error (non-numeric argument, out of integer bounds, or duplicate values), the program prints `Error` to standard error (`stderr`).
 
-### Exemplos de uso
+### Usage examples
 
 ```bash
 $> ./push_swap 2 1 3 6 5 8
@@ -84,14 +84,14 @@ Error
 
 ```
 
-### Modo benchmark (`--bench`)
+### Benchmark mode (`--bench`)
 
-Ao adicionar a flag `--bench`, o programa imprime em `stderr`, após a ordenação:
+Adding the `--bench` flag makes the program print to `stderr`, after sorting:
 
-* A desordem calculada da pilha inicial (em % com duas casas decimais);
-* O nome da estratégia usada e sua classe de complexidade teórica;
-* O número total de operações geradas;
-* A contagem individual de cada tipo de operação executada.
+* The calculated disorder of the initial stack (as a % with two decimal places);
+* The name of the strategy used and its theoretical complexity class;
+* The total number of operations generated;
+* The individual count of each type of operation executed.
 
 ```bash
 $> ./push_swap --bench --complex 5 4 3 2 1 1>/dev/null
@@ -104,102 +104,102 @@ sa: 1 | pb: 2 | ra: 1 | rra: 1 | pa: 2 |
 
 ---
 
-## Algoritmos Implementados
+## Implemented Algorithms
 
-O subject exige estratégias de ordenação distintas, todas gerando exclusivamente sequências de operações do modelo Push_swap.
+The subject requires distinct sorting strategies, all generating exclusively operation sequences from the Push_swap model.
 
 ### 1. Simple — $O(n^2)$ (`--simple`)
 
-Adaptação de um **selection sort**: a cada iteração, localiza-se o menor valor ainda presente em `a`, que é levado ao topo pelo caminho mais curto (`ra` ou `rra`) e empurrado para `b`. Ao final, todos os elementos retornam para `a`, resultando na pilha ordenada. Adequado como estratégia de *baseline*.
+An adaptation of **selection sort**: at each iteration, the smallest value still present in `a` is located, brought to the top by the shortest path (`ra` or `rra`), and pushed to `b`. At the end, all elements return to `a`, resulting in the sorted stack. Suitable as a *baseline* strategy.
 
 ### 2. Medium — $O(n\sqrt{n})$ (`--medium`)
 
-Estratégia de **particionamento em blocos (chunks)**: o intervalo de índices é dividido em blocos de tamanho calculado dinamicamente com base na entrada. Os valores de `a` que cabem no bloco atual são empurrados para `b` (com micro-ajustes de rotação para manter `b` parcialmente ordenada). Ao final, os maiores valores de `b` são localizados e devolvidos a `a`. O fracionamento da pilha garante a alta performance computacional da estratégia.
+A **chunk partitioning** strategy: the range of indexes is divided into blocks of size dynamically calculated based on the input. The values of `a` that fit into the current block are pushed to `b` (with minor rotation adjustments to keep `b` partially sorted). At the end, the largest values in `b` are located and returned to `a`. Splitting the stack into chunks ensures the strategy's high computational performance.
 
 ### 3. Complex — $O(n \log n)$ (`--complex`)
 
-Adaptação de **quicksort com particionamento por mediana**: a cada chamada recursiva, o pivô mediano é estimado; a pilha é percorrida empurrando os elementos menores/maiores para a pilha oposta. A recursão é aplicada separadamente às partições, com a devida compensação de *backtracking* (rebobinar com rotações reversas) para lidar com a natureza circular das pilhas.
+An adaptation of **quicksort with median-based partitioning**: at each recursive call, the median pivot is estimated; the stack is traversed, pushing smaller/larger elements to the opposite stack. Recursion is applied separately to each partition, with proper *backtracking* compensation (rewinding with reverse rotations) to handle the circular nature of the stacks.
 
-### 4. Adaptive (`--adaptive`, comportamento padrão)
+### 4. Adaptive (`--adaptive`, default behavior)
 
-O subject exige que a estratégia adaptativa escolha internamente entre
-os três regimes de complexidade **com base na desordem medida** da
-pilha inicial:
+The subject requires the adaptive strategy to internally choose among
+the three complexity regimes **based on the measured disorder** of
+the initial stack:
 
-| Desordem | Regime esperado |
+| Disorder | Expected regime |
 |----------|------------------|
-| `< 0.20` | O(n²) — baixa desordem |
-| `0.20` a `0.50` | O(n√n) — desordem média |
-| `>= 0.50` | O(n log n) — alta desordem |
+| `< 0.20` | O(n²) — low disorder |
+| `0.20` to `0.50` | O(n√n) — medium disorder |
+| `>= 0.50` | O(n log n) — high disorder |
 
-A justificativa desses limiares é que, quanto mais próxima do estado ordenado a pilha já está, menos vantagem um algoritmo assintoticamente melhor (porém com maior overhead constante, como o particionamento por mediana) traz na prática — um algoritmo simples de seleção já resolve o caso quase-ordenado com poucas operações. À medida que a desordem cresce, o custo quadrático do algoritmo simples deixa de compensar e estratégias de particionamento (chunk / quicksort) passam a gerar menos operações.
-
----
-
-## Métrica de Desordem
-
-A desordem é um coeficiente entre `0.0` e `1.0` que mede o quão longe a pilha inicial está da ordenação perfeita, analisando pares discrepantes. A medição é calculada **antes** de qualquer operação ser executada, e exibida como bônus da flag `--bench`.
-
-* `0.0` → Pilha já ordenada (nenhum par fora de ordem).
-* `1.0` → Pilha na pior ordem possível (todos os pares estão fora de ordem).
+The rationale behind these thresholds is that the closer the stack already is to its sorted state, the less advantage an asymptotically better algorithm (but with higher constant overhead, such as median-based partitioning) provides in practice — a simple selection algorithm already solves the near-sorted case with few operations. As disorder increases, the quadratic cost of the simple algorithm stops paying off, and partitioning strategies (chunk / quicksort) start generating fewer operations.
 
 ---
 
-## Estrutura do Projeto
+## Disorder Metric
 
-| Arquivo(s) | Responsabilidade |
+Disorder is a coefficient between `0.0` and `1.0` that measures how far the initial stack is from perfect order, by analyzing discrepant pairs. The measurement is calculated **before** any operation is executed, and displayed as a bonus of the `--bench` flag.
+
+* `0.0` → Stack already sorted (no pair out of order).
+* `1.0` → Stack in the worst possible order (all pairs out of order).
+
+---
+
+## Project Structure
+
+| File(s) | Responsibility |
 | --- | --- |
-| `main.c` | Ponto de entrada, seleção de estratégia, orquestração geral. |
-| `argument_parser.c`, `split_validations.c`, `string_validation.c` | Parsing e validação rigorosa dos argumentos. |
-| `stack_creation.c`, `node_helpers.c` | Criação, liberação e manipulação das listas encadeadas. |
-| `operations_*.c` | Implementação das 11 operações oficiais do Push_swap. |
-| `assign_indexes.c` | Conversão dos valores brutos em índices relativos de ordenação. |
-| `algorithm_*.c` | Implementação das estratégias de ordenação (Simple, Medium, Complex). |
-| `disorder.c` | Cálculo da métrica matemática de desordem. |
-| `bench.c`, `bench_utils.c` | Benchmark detalhado de uso de memória e instruções. |
-| `error_handling.c` | Saída segura em caso de dados inválidos ou falhas de alocação. |
+| `main.c` | Entry point, strategy selection, overall orchestration. |
+| `argument_parser.c`, `split_validations.c`, `string_validation.c` | Rigorous parsing and validation of arguments. |
+| `stack_creation.c`, `node_helpers.c` | Creation, freeing, and manipulation of linked lists. |
+| `operations_*.c` | Implementation of the 11 official Push_swap operations. |
+| `assign_indexes.c` | Conversion of raw values into relative sorting indexes. |
+| `algorithm_*.c` | Implementation of the sorting strategies (Simple, Medium, Complex). |
+| `disorder.c` | Calculation of the mathematical disorder metric. |
+| `bench.c`, `bench_utils.c` | Detailed benchmark of memory usage and instructions. |
+| `error_handling.c` | Safe exit in case of invalid data or allocation failures. |
 
 ---
 
-## Contribuições
+## Contributions
 
-Este projeto foi desenvolvido em dupla, conforme exigido pelo subject.
+This project was developed in a pair, as required by the subject.
 
-- **thamoliv** — parsing e validação de argumentos, criação/gerência
-  das pilhas, operações Push_swap, as quatro estratégias de ordenação
-  (`simple`, `medium`, `complex`), cálculo de desordem e `main.c`.
-- **gproenca** — funções auxiliares de algoritmo (`algorithm_utils.c`:
-  `is_sorted`, `find_position`, `stack_min_index`, `stack_max_index`), modo de
-  benchmark e operações de rotação (`operations_rotate.c`).
+- **thamoliv** — argument parsing and validation, stack creation/management,
+  Push_swap operations, the four sorting strategies
+  (`simple`, `medium`, `complex`), disorder calculation, and `main.c`.
+- **gproenca** — algorithm helper functions (`algorithm_utils.c`:
+  `is_sorted`, `find_position`, `stack_min_index`, `stack_max_index`), benchmark
+  mode, and rotation operations (`operations_rotate.c`).
 
-Ambos os integrantes compreendem a totalidade dos algoritmos
-implementados e são capazes de explicar e defender qualquer parte do
-código durante a avaliação.
+Both team members understand the entirety of the implemented
+algorithms and are able to explain and defend any part of the
+code during evaluation.
 
-## Recursos
+## Resources
 
-- [Subject oficial do projeto push_swap (42)](https://www.42.fr) — regras, operações permitidas e requisitos de entrega.
-- [o-reo/push_swap_visualizer](https://github.com/o-reo/push_swap_visualizer) — visualizador gráfico para depurar a sequência de operações gerada.
-- [Push_swap Tutorial (Medium)](https://medium.com/nerd-for-tech/push-swap-tutorial-fa746e6aba1e) — panorama de abordagens (radix, chunks, quicksort) usadas neste tipo de projeto.
-- [Sorting algorithms overview (LAMFO)](https://lamfo-unb.github.io/2019/04/21/Sorting-algorithms/) — revisão de algoritmos clássicos de ordenação e suas complexidades.
-- [Big-O Cheat Sheet](https://www.bigocheatsheet.com/) — referência rápida de complexidades de tempo/espaço.
-- [42 Norminette](https://github.com/42School/norminette) — ferramenta oficial de verificação da Norm.
+- [Official push_swap subject (42)](https://www.42.fr) — rules, allowed operations, and delivery requirements.
+- [o-reo/push_swap_visualizer](https://github.com/o-reo/push_swap_visualizer) — graphical visualizer to debug the generated operation sequence.
+- [Push_swap Tutorial (Medium)](https://medium.com/nerd-for-tech/push-swap-tutorial-fa746e6aba1e) — overview of approaches (radix, chunks, quicksort) used in this type of project.
+- [Sorting algorithms overview (LAMFO)](https://lamfo-unb.github.io/2019/04/21/Sorting-algorithms/) — review of classic sorting algorithms and their complexities.
+- [Big-O Cheat Sheet](https://www.bigocheatsheet.com/) — quick reference for time/space complexities.
+- [42 Norminette](https://github.com/42School/norminette) — official Norm-checking tool.
 
-### Uso de IA
+### AI usage
 
-Ferramentas de IA (**Claude**, da Anthropic, e **Gemini**, do Google)
-foram utilizadas como apoio de consulta ao longo do desenvolvimento do
-projeto, para:
+AI tools (**Claude**, by Anthropic, and **Gemini**, by Google)
+were used as a reference aid throughout the project's development, to:
 
-- Entender melhor os algoritmos de ordenação exigidos pelo subject
-  (selection sort, chunk/bucket sort, quicksort adaptado a pilhas) e
-  suas classes de complexidade;
-- Redigir e estruturar este `README.md` — organização das seções
-  exigidas pelo subject, descrição dos algoritmos a partir da leitura
-  do código-fonte já implementado, e formatação das tabelas.
+- Better understand the sorting algorithms required by the subject
+  (selection sort, chunk/bucket sort, stack-adapted quicksort) and
+  their complexity classes;
+- Draft and structure this `README.md` — organizing the sections
+  required by the subject, describing the algorithms based on reading
+  the already-implemented source code, and formatting the tables.
 
-Todo o código de `push_swap` foi escrito, revisado e é de total
-compreensão da dupla (**thamoliv** e **gproenca**), que é capaz de
-explicar e defender qualquer trecho durante a avaliação; a IA serviu
-apenas como ferramenta de apoio e consulta, nunca como autora do
-código final.
+All of the `push_swap` code was written, reviewed, and is fully
+understood by the pair (**thamoliv** and **gproenca**), who are able to
+explain and defend any part of it during evaluation; AI served
+only as a support and reference tool, never as the author of the
+final code.
+```
